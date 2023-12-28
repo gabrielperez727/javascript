@@ -27,27 +27,96 @@ const restaurant = {
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your pasta with ${ing1}, ${ing2}, and ${ing3}`);
+  },
+
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
 };
 
-restaurant.orderDelivery({
-  time: "23:30",
-  address: "Via del Sole, 21",
-  mainIndex: 2,
-  starterIndex: 2,
-});
+const rest1 = {
+  name: "Capri",
+  numGuests: 0,
+};
 
-const { name, openingHours, categories } = restaurant;
+const rest2 = {
+  name: "La Piazaa",
+  owner: "Leonardo",
+};
 
-console.log(name, openingHours, categories);
+console.log(rest1);
+console.log(rest2);
 
-const {
-  name: restaurantName,
-  openingHours: hours,
-  categories: tags,
-} = restaurant;
-console.log(restaurantName, hours, tags);
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
 
-const {
-  fri: { open, close },
-} = openingHours;
-console.log(open, close);
+rest1.owner &&= "<ANN>";
+rest2.owner &&= "<ANN>";
+
+console.log(rest1);
+console.log(rest2);
+restaurant.numGuests = 0;
+const guests = restaurant.numGuests || 10;
+console.log(guests);
+
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect);
+
+console.log("---------------");
+
+const game = {
+  team1: "Bayern Munich",
+  team2: "Borrussia Dortmund",
+  players: [
+    [
+      "Neuer",
+      "Pavard",
+      "Martinez",
+      "Alaba",
+      "Davies",
+      "Kimmich",
+      "Goretzka",
+      "Coman",
+      "Muller",
+      "Gnarby",
+      "Lewandowski",
+    ],
+    [
+      "Burki",
+      "Schulz",
+      "Hummels",
+      "Akanji",
+      "Hakimi",
+      "Weigl",
+      "Witsel",
+      "Hazard",
+      "Brandt",
+      "Sancho",
+      "Gotze",
+    ],
+  ],
+  score: "4:0",
+  scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+  date: "Nov 9th, 2020",
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+const [players1, players2] = game.players;
+
+const [gk, ...fieldPlayers] = players1;
+
+const allPlayers = [...players1, ...players2];
+console.log(allPlayers);
+
+const players1Final = [gk, ...fieldPlayers, "Thiago", "Coutinho", "Perisic"];
+console.log(players1Final);
+
+const printGoals = function (...allPlayers) {};
