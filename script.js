@@ -38,36 +38,6 @@ const restaurant = {
   },
 };
 
-const rest1 = {
-  name: "Capri",
-  numGuests: 0,
-};
-
-const rest2 = {
-  name: "La Piazaa",
-  owner: "Leonardo",
-};
-
-console.log(rest1);
-console.log(rest2);
-
-rest1.numGuests ??= 10;
-rest2.numGuests ??= 10;
-
-rest1.owner &&= "<ANN>";
-rest2.owner &&= "<ANN>";
-
-console.log(rest1);
-console.log(rest2);
-restaurant.numGuests = 0;
-const guests = restaurant.numGuests || 10;
-console.log(guests);
-
-const guestCorrect = restaurant.numGuests ?? 10;
-console.log(guestCorrect);
-
-console.log("---------------");
-
 const game = {
   team1: "Bayern Munich",
   team2: "Borrussia Dortmund",
@@ -101,7 +71,7 @@ const game = {
   ],
   score: "4:0",
   scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
-  date: "Nov 9th, 2020",
+  date: "Nov 9th, 2037",
   odds: {
     team1: 1.33,
     x: 3.25,
@@ -114,9 +84,20 @@ const [players1, players2] = game.players;
 const [gk, ...fieldPlayers] = players1;
 
 const allPlayers = [...players1, ...players2];
+
+console.log(gk, fieldPlayers);
+
 console.log(allPlayers);
 
-const players1Final = [gk, ...fieldPlayers, "Thiago", "Coutinho", "Perisic"];
+const players1Final = [...players1, "Thiago", "Coutinho", "Perisic"];
+
 console.log(players1Final);
 
-const printGoals = function (...allPlayers) {};
+const printGoals = function (...players) {
+  console.log(`${players.length} goals scored`);
+};
+
+printGoals(...game.scored);
+printGoals("Davies", "Muller", "Lewandowski");
+
+team1 > team2 && console.log("Team 1 is most likely to win");
