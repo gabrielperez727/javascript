@@ -108,18 +108,22 @@ const gameEvents = new Map([
   [92, "� Yellow card"],
 ]);
 
-const events = new Set(gameEvents.values());
+const airLine = "Pegasus Airlines";
+const plane = "A320";
 
-console.log(events);
+console.log(airLine.slice(4, 7));
+console.log(airLine.slice(0, airLine.indexOf(" ")));
+console.log(airLine.slice(airLine.lastIndexOf(" ") + 1));
+console.log(airLine.slice(-2));
+console.log(airLine.slice(1, -2));
 
-gameEvents.delete(64);
-console.log(gameEvents);
+const checkMiddleSeat = function (seat) {
+  const s = seat.slice(-1);
+  if (s === "B" || s === "E") {
+    console.log("MIddle Seat :(");
+  } else {
+    console.log("Window or Aisle");
+  }
+};
 
-console.log(
-  `An event happened, on average, every ${90 / gameEvents.size} minutes`
-);
-
-for (const [key, value] of gameEvents) {
-  const time = key <= 45 ? "First" : "Second";
-  console.log(`[${time} Half] ${key} ${value}`);
-}
+checkMiddleSeat("23B");
