@@ -38,6 +38,21 @@ const restaurant = {
   },
 };
 
+const question = new Map([
+  ["question", "What is the best programming language in the world"],
+  [1, "C"],
+  [2, "Java"],
+  [3, "JavaScript"],
+  ["correct", 3],
+  [true, "Correct!"],
+  [false, "Try again"],
+]);
+
+console.log(question.get("question"));
+for (const [key, value] of question) {
+  if (typeof key === "number") console.log(`Answer ${key}: ${value}`);
+}
+
 const game = {
   team1: "Bayern Munich",
   team2: "Borrussia Dortmund",
@@ -79,25 +94,32 @@ const game = {
   },
 };
 
-const [players1, players2] = game.players;
+const gameEvents = new Map([
+  [17, "⚽ GOAL"],
+  [36, "� Substitution"],
+  [47, "⚽ GOAL"],
+  [61, "� Substitution"],
+  [64, "� Yellow card"],
+  [69, "� Red card"],
+  [70, "� Substitution"],
+  [72, "� Substitution"],
+  [76, "⚽ GOAL"],
+  [80, "⚽ GOAL"],
+  [92, "� Yellow card"],
+]);
 
-const [gk, ...fieldPlayers] = players1;
+const events = new Set(gameEvents.values());
 
-const allPlayers = [...players1, ...players2];
+console.log(events);
 
-console.log(gk, fieldPlayers);
+gameEvents.delete(64);
+console.log(gameEvents);
 
-console.log(allPlayers);
+console.log(
+  `An event happened, on average, every ${90 / gameEvents.size} minutes`
+);
 
-const players1Final = [...players1, "Thiago", "Coutinho", "Perisic"];
-
-console.log(players1Final);
-
-const printGoals = function (...players) {
-  console.log(`${players.length} goals scored`);
-};
-
-printGoals(...game.scored);
-printGoals("Davies", "Muller", "Lewandowski");
-
-team1 > team2 && console.log("Team 1 is most likely to win");
+for (const [key, value] of gameEvents) {
+  const time = key <= 45 ? "First" : "Second";
+  console.log(`[${time} Half] ${key} ${value}`);
+}
