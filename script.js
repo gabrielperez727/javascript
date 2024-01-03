@@ -111,19 +111,97 @@ const gameEvents = new Map([
 const airLine = "Pegasus Airlines";
 const plane = "A320";
 
-console.log(airLine.slice(4, 7));
-console.log(airLine.slice(0, airLine.indexOf(" ")));
-console.log(airLine.slice(airLine.lastIndexOf(" ") + 1));
-console.log(airLine.slice(-2));
-console.log(airLine.slice(1, -2));
+console.log(airLine.toLocaleLowerCase());
+console.log(airLine.toUpperCase());
 
-const checkMiddleSeat = function (seat) {
-  const s = seat.slice(-1);
-  if (s === "B" || s === "E") {
-    console.log("MIddle Seat :(");
+const passenger = "gAbrieL";
+const passengerFized = passenger.toLowerCase();
+const passengerCorrect =
+  passengerFized[0].toUpperCase() + passengerFized.slice(1);
+console.log(passengerCorrect);
+
+const fixName = function (name) {
+  const lower = name.toLowerCase();
+  const correct = lower[0].toUpperCase() + lower.slice(1);
+  console.log(correct);
+};
+
+//Compare Email
+
+const email = "hello@jonas.io";
+const loginEmail = "  Hello@Jonas.Io \n";
+
+const lower = loginEmail.toLowerCase();
+const trimmed = lower.trim();
+console.log(trimmed);
+
+const priceGB = "288,97£";
+const priceUS = priceGB.replace("£", "$").replace(",", ".");
+console.log(priceUS);
+
+const announcement = `All passengers come to barding door 23. Boarding door 23!`;
+
+console.log(announcement.replaceAll("door", "gate"));
+
+const planes = "A32neo";
+
+console.log(planes.startsWith("A320"));
+
+const checkBaggage = function (items) {
+  const itemsText = items.toLowerCase();
+  if (itemsText.includes("gun") || itemsText.includes("knife")) {
+    console.log("You cannot board the plane");
   } else {
-    console.log("Window or Aisle");
+    console.log("You may board the plane");
   }
 };
 
-checkMiddleSeat("23B");
+checkBaggage("I have a gun and want to board the plane");
+checkBaggage("I have a knife and want to board the plane");
+checkBaggage("I have a food and want to board the plane");
+
+const passenger1 = "gabriel robert perez";
+const capitalize = function (name) {
+  const names = name.split(" ");
+  const namesUpper = [];
+  for (const n of names) {
+    namesUpper.push(n[0].toUpperCase() + n.slice(1));
+  }
+  console.log(namesUpper.join(" "));
+};
+
+capitalize(passenger1);
+
+document.body.append(document.createElement("textarea"));
+document.body.append(document.createElement("button"));
+
+const camelCase = function (word) {
+  const lower = word.toLowerCase();
+  const remove = lower.replace(/_/g, "");
+};
+
+camelCase("GABriel_Perewz\r\nGaB_brr");
+
+const flights =
+  "_Delayed_Departure; fao93766109; tx12133758440;11:25+_Arrival;bru0943384722; fa093766109; 11:45+_Delayed_Arrival; hel7439299980; fa093766109;12:05+_Departure; fa093766109; lis2323639855;12:30";
+
+console.log(flights.split("+"));
+
+const airportCode = function (str) {
+  return str.slice(0, 3).toUpperCase();
+};
+
+const airportCodes = (str) => str.slice(0, 3).toUpperCase();
+
+for (const flight of flights.split("+")) {
+  const [type, from, to, time] = flight.split(";");
+  const output = `${type.startsWith("_Delayed") ? "🛑" : ""}${type.replaceAll(
+    "_",
+    " "
+  )} ${airportCodes(from)} to ${airportCode(to)} (${time.replaceAll(
+    ":",
+    "h"
+  )})`.padStart(39);
+
+  console.log(output);
+}
