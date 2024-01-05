@@ -74,13 +74,25 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
-let arr = ["a", "b", "c", "d", "e"];
 
-const arr2 = ["j", "i", "h", "g", "f"];
-console.log(arr2.reverse());
+for (const [i, money] of movements.entries()) {
+  if (money > 0) {
+    console.log(`Transaction ${i + 1} You deposited ${money}`);
+  } else {
+    console.log(`Transaction ${i + 1} You withdrew ${Math.abs(money)}`);
+  }
+}
+console.log("-------------");
+movements.forEach(function (money, i, array) {
+  if (money > 0) {
+    console.log(`Transaction ${i + 1} You deposited ${money}`);
+  } else {
+    console.log(`Transaction ${i + 1} You withdrew ${Math.abs(money)}`);
+  }
+});
 
-console.log(arr2);
+const presidents = ["Washington", "Adams", "Jefferson", "Madison"];
 
-const letters = arr.concat(arr2);
-console.log(letters);
-console.log(letters.join(" - "));
+presidents.forEach(function (name, i, arr) {
+  console.log(`President ${i + 1} ${name}`);
+});
