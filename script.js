@@ -61,6 +61,23 @@ const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = "";
+  movements.forEach(function (mov, i, arr) {
+    const type = mov > 0 ? "deposit" : "withdrawal";
+    const html = `<div class="movements">
+    <div class="movements__row">
+      <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
+    
+      <div class="movements__value">${mov}</div>
+    </div>`;
+    containerMovements.insertAdjacentHTML("afterbegin", html);
+  });
+};
+displayMovements(account1.movements);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -73,26 +90,59 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
+const eurToUsd = 1.1;
+const movementsUSD = movements.map(function (mov) {
+  return mov * eurToUsd;
+});
+
+const movementsUSDD = movements.map((mov) => mov * eurToUsd);
+
+for (const mov of movements) console.log(movements);
+console.log(movementsUSD);
+console.log(movementsUSDD);
+
+movements.map(function (move, i, arr) {});
+
 /////////////////////////////////////////////////
 
-for (const [i, money] of movements.entries()) {
-  if (money > 0) {
-    console.log(`Transaction ${i + 1} You deposited ${money}`);
-  } else {
-    console.log(`Transaction ${i + 1} You withdrew ${Math.abs(money)}`);
-  }
-}
-console.log("-------------");
-movements.forEach(function (money, i, array) {
-  if (money > 0) {
-    console.log(`Transaction ${i + 1} You deposited ${money}`);
-  } else {
-    console.log(`Transaction ${i + 1} You withdrew ${Math.abs(money)}`);
-  }
-});
+// for (const [i, money] of movements.entries()) {
+//   if (money > 0) {
+//     console.log(`Transaction ${i + 1} You deposited ${money}`);
+//   } else {
+//     console.log(`Transaction ${i + 1} You withdrew ${Math.abs(money)}`);
+//   }
+// }
+// console.log("-------------");
+// movements.forEach(function (money, i, array) {
+//   if (money > 0) {
+//     console.log(`Transaction ${i + 1} You deposited ${money}`);
+//   } else {
+//     console.log(`Transaction ${i + 1} You withdrew ${Math.abs(money)}`);
+//   }
+// });
 
-const presidents = ["Washington", "Adams", "Jefferson", "Madison"];
+// const presidents = ["Washington", "Adams", "Jefferson", "Madison"];
 
-presidents.forEach(function (name, i, arr) {
-  console.log(`President ${i + 1} ${name}`);
-});
+// presidents.forEach(function (name, i, arr) {
+//   console.log(`President ${i + 1} ${name}`);
+// });
+
+// const dogsJulia = [3, 5, 2, 12, 7];
+// const dogsKate = [4, 1, 15, 8, 3];
+
+// const dogsJulia2 = [9, 16, 6, 8, 3];
+// const dogsKate2 = [10, 5, 6, 1, 4];
+
+// const checkDogs = function (dogsJulia, dogsKate) {
+//   const all = dogsJulia.slice(1, -2).concat(dogsKate);
+//   console.log(all);
+//   all.forEach(function (age, i, arr) {
+//     if (age >= 3) {
+//       console.log(`Dog number ${i + 1} is an adult, and is ${age} years old`);
+//     } else {
+//       console.log(`Dog number ${i + 1} is still a puppy`);
+//     }
+//   });
+// };
+
+// checkDogs(dogsJulia2, dogsKate2);
