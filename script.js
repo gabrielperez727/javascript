@@ -155,6 +155,32 @@ btnTransfer.addEventListener("click", function (e) {
     inputTransferAmount.value = inputTransferTo.value = "";
   }
 });
+
+btnLoan.addEventListener("click", function (e) {
+  e.preventDefault();
+  const amount = Number(inputLoanAmount.value);
+  if (
+    amount > 0 &&
+    currentAccount.movements.some((mov) => mov >= amount * 0.1)
+  ) {
+    currentAccount.movements.push(amount);
+    updateUI(currentAccount);
+  }
+});
+
+btnClose.addEventListener("click", function (e) {
+  e.preventDefault();
+  if (
+    inputCloseUsername.value === currentAccount.username &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    const index = accounts.findIndex(
+      (acc) => acc.username === currentAccount.username
+    );
+    accounts.splice(index, 1);
+    containerApp.style.opacity = 0;
+  }
+});
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -173,6 +199,17 @@ const totalDepositsUS = movements
   .filter((mov) => mov > 0)
   .map((mov) => mov * eurToUsd)
   .reduce((acc, mov) => acc + mov, 0);
+
+console.log(movements.includes(200));
+
+const anyDeposits = movements.some((mov) => mov > 0);
+console.log(anyDeposits);
+
+const accountMovements = accounts
+  .flatMap((acc) => acc.movements)
+  .reduce((acc, mov) => acc + mov, 0);
+
+console.log(accountMovements);
 
 // const calcAverageHumanAge = function (age) {
 //   const humanAge = dogAges.map(function (age) {
