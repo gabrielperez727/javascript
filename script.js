@@ -364,8 +364,6 @@ labelBalance.addEventListener("click", function () {
   const movementsUI = Array.from(
     document.querySelectorAll(".movements__value")
   );
-
-  console.log(movementsUI);
 });
 
 // .map()
@@ -377,20 +375,16 @@ const toLowerCase = function (name) {
 
 const rightName = names.map(toLowerCase);
 
-console.log(rightName);
-
 //1)
 const bankDepositsSum = accounts
   .flatMap((acc) => acc.movements)
   .filter((mov) => mov > 0)
   .reduce((sum, cur) => sum + cur, 0);
-console.log(bankDepositsSum);
 
 //2)
 const thousand = accounts
   .flatMap((acc) => acc.movements)
   .filter((mov) => mov > 1000).length;
-console.log(thousand);
 
 //3
 const { deposits, withdrawals } = accounts
@@ -402,4 +396,64 @@ const { deposits, withdrawals } = accounts
     },
     { deposits: 0, withdrawals: 0 }
   );
-console.log(sums);
+
+//
+const dogs = [
+  { weight: 22, curFood: 250, owners: ["Alice", "Bob"] },
+  { weight: 8, curFood: 200, owners: ["Matilda"] },
+  { weight: 13, curFood: 275, owners: ["Sarah", "John"] },
+  { weight: 32, curFood: 340, owners: ["Michael"] },
+];
+
+const dogsJulia = [3, 5, 2, 12, 7];
+const dogsKate = [4, 1, 15, 8, 3];
+
+const checkDogs = function (dogsJulia, dogsKate) {
+  const julia = dogsJulia.slice();
+  julia.splice(0, 1);
+  julia.splice(-2);
+  const allDogs = julia.concat(dogsKate);
+  allDogs.forEach(function (age, i) {
+    if (age >= 3) {
+      console.log(`Dog number ${i + 1} is an adult, and is ${age} years old`);
+    } else if (age < 3) {
+      console.log(`Dog number ${i + 1} is a puppy, and is ${age} years old`);
+    }
+  });
+};
+
+checkDogs(dogsJulia, dogsKate);
+
+// dogs.forEach((dog) => {
+//   dog.recommendedFood = dog.weight ** 0.75 * 28;
+// });
+
+// console.log(dogs);
+
+// const sarahDog = dogs.find((dog) => dog.owners.includes("Sarah"));
+// console.log(
+//   `${sarahDog.owners.join(" and ")}'s dog is eating ${
+//     sarahDog.curFood > sarahDog.recommendedFood ? "too much" : "too little"
+//   }`
+// );
+
+// const ownerEatTooMuch = dogs
+//   .filter((dog) => dog.curFood > dog.recommendedFood)
+//   .flatMap((dog) => dog.owners);
+// const ownersEatTooLittle = dogs
+//   .filter((dog) => dog.curFood < dog.recommendedFood)
+//   .flatMap((dog) => dog.owners);
+// console.log(ownerEatTooMuch);
+// console.log(ownersEatTooLittle);
+// console.log(sarahDog);
+
+// console.log(
+//   `${ownerEatTooMuch.join(" and ")} eat too much and ${ownersEatTooLittle.join(
+//     " and "
+//   )} eat too little`
+// );
+
+// const eatingRight = dogs.some((dog) => dog.curFood === dog.recommendedFood);
+// console.log(`Any dog eating exactly the recommended amount: ${eatingRight}`);
+
+// console.log(eatingRight);
