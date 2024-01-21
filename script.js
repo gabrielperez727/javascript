@@ -398,31 +398,49 @@ const { deposits, withdrawals } = accounts
   );
 
 //
-const dogs = [
-  { weight: 22, curFood: 250, owners: ["Alice", "Bob"] },
-  { weight: 8, curFood: 200, owners: ["Matilda"] },
-  { weight: 13, curFood: 275, owners: ["Sarah", "John"] },
-  { weight: 32, curFood: 340, owners: ["Michael"] },
-];
 
-const dogsJulia = [3, 5, 2, 12, 7];
-const dogsKate = [4, 1, 15, 8, 3];
+// const dogsJulia = [3, 5, 2, 12, 7];
+// const dogsKate = [4, 1, 15, 8, 3];
 
-const checkDogs = function (dogsJulia, dogsKate) {
-  const julia = dogsJulia.slice();
-  julia.splice(0, 1);
-  julia.splice(-2);
-  const allDogs = julia.concat(dogsKate);
-  allDogs.forEach(function (age, i) {
-    if (age >= 3) {
-      console.log(`Dog number ${i + 1} is an adult, and is ${age} years old`);
-    } else if (age < 3) {
-      console.log(`Dog number ${i + 1} is a puppy, and is ${age} years old`);
-    }
-  });
-};
+// const checkDogs = function (dogsJulia, dogsKate) {
+//   const julia = dogsJulia.slice();
+//   julia.splice(0, 1);
+//   julia.splice(-2);
+//   const allDogs = julia.concat(dogsKate);
+//   allDogs.forEach(function (age, i) {
+//     if (age >= 3) {
+//       console.log(`Dog number ${i + 1} is an adult, and is ${age} years old`);
+//     } else if (age < 3) {
+//       console.log(`Dog number ${i + 1} is a puppy, and is ${age} years old`);
+//     }
+//   });
+// };
 
-checkDogs(dogsJulia, dogsKate);
+// checkDogs(dogsJulia, dogsKate);
+
+// const dogAges = [5, 2, 4, 1, 15, 8, 2];
+
+// const calcAverageHumanAge = function (ages) {
+//   const humanYears = ages.map((ages) => (ages <= 2 ? ages * 2 : 16 + ages * 4));
+//   const adults = humanYears.filter((age) => age >= 18);
+//   const avergae = humanYears.reduce(
+//     (acc, age, i, arr) => acc + age / arr.length,
+//     0
+//   );
+//   console.log(humanYears);
+//   console.log(adults);
+//   console.log(avergae);
+// };
+
+// const calcAverageHumanAge2 = (ages) => {
+//   const humanYears = ages
+//     .map((ages) => (ages <= 2 ? ages * 2 : 16 + ages * 4))
+//     .filter((age) => age >= 18);
+//   console.log(humanYears);
+// };
+
+// calcAverageHumanAge(dogAges);
+// calcAverageHumanAge2(dogAges);
 
 // dogs.forEach((dog) => {
 //   dog.recommendedFood = dog.weight ** 0.75 * 28;
@@ -457,3 +475,28 @@ checkDogs(dogsJulia, dogsKate);
 // console.log(`Any dog eating exactly the recommended amount: ${eatingRight}`);
 
 // console.log(eatingRight);
+
+const dogs = [
+  { weight: 22, curFood: 250, owners: ["Alice", "Bob"] },
+  { weight: 8, curFood: 200, owners: ["Matilda"] },
+  { weight: 13, curFood: 275, owners: ["Sarah", "John"] },
+  { weight: 32, curFood: 340, owners: ["Michael"] },
+];
+
+dogs.forEach((dog) => (dog.recFood = Math.trunc(dog.weight ** 0.75 * 28)));
+console.log(dogs);
+
+const sarahDog = dogs.find((dogs) => dogs.owners.includes("Sarah"));
+console.log(sarahDog);
+
+console.log(
+  `Sarah's dog is eating ${
+    sarahDog.curFood > sarahDog.recFood ? "too much" : "too little"
+  }`
+);
+
+const ownersEatTooMuch = dogs
+  .filter((dogs) => dogs.curFood > dogs.recFood)
+  .flatMap((dogs) => dogs.owners);
+
+console.log(ownersEatTooMuch);
